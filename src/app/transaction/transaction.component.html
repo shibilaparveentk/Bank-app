@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <div class="col-lg-10">
+      <a class="navbar-brand" href="/dashboard">
+        <h4><i class="fa-sharp fa-solid fa-building-columns fa-2x"></i>Online Bank</h4>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid mt-2">
+  <h1 class="text-secondary text-center">Transactions</h1>
+  <div class="container border p-3 m-5">
+    <div class="row">
+      <div class="col-lg-4">
+        <h3 class="text-success">Transaction History</h3>
+      </div>
+
+      <div class="col-lg-4">
+        <label for="search">Search by:</label> &nbsp;
+        <input (keyup)="search($event)" id=" search" type=" text" placeholder="transaction type">
+      </div>
+      <div class="col-lg-4">
+        <input style="float:right;" type=" button" value="Export" class="btn btn-success" (click)="generatePdf()">
+      </div>
+
+
+
+      <div>
+        <table class=" table border mt-3 text-center">
+          <thead>
+            <tr>
+              <th>NO</th>
+              <th>Transaction Type</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let trans of transactions | filter:searchKey:'type';let i=index">
+              <th>{{i+1}}</th>
+              <th>{{trans.type}}</th>
+              <th>{{trans.amount}}</th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

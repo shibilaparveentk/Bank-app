@@ -1,0 +1,128 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <div class="col-lg-10">
+      <a class="navbar-brand" href="">
+        <h4><i class="fa-sharp fa-solid fa-building-columns fa-2x"></i>Online Bank </h4>
+      </a>
+    </div>
+  </div>
+  <ul style="margin-right:2cm;" class="navbar-nav ml me-6 mb-3 mb-lg-3">
+    <li class="nav-item dropdown active">
+      <a class=" nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false" id="service">
+        Services</a>
+
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" routerLink="/deposit">Deposit</a></li>
+        <li><a class="dropdown-item" routerLink="/withdraw">Withdraw</a></li>
+        <li><a class="dropdown-item" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+            aria-controls="offcanvasExample" (click)="getBalance()">
+            Balance Enquiry</a></li>
+        <li><a class=" dropdown-item" routerLink="/transaction">Transaction History</a></li>
+        <hr>
+        <li>
+          <button class=" dropdown-item" (click)="deleteAcno()">Delete Account</button>
+        </li>
+        <li>
+          <button class="dropdown-item" (click)="logout() ">Sign Out</button>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+<!--logout popup-->
+<div class="container mt-5" *ngIf="isLogout">
+  <div class="row text-center">
+    <div class="col">
+      <img class="w-25 d-block m-auto"
+        src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921 " alt="no image">
+      <h4 class="text-danger">Signing out...</h4>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!---delete popup
+<div class="container mt-5" *ngIf="deleteMsg">
+  <div class="row text-center">
+    <div class="col">
+      <img class="w-25 d-block m-auto"
+        src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921 " alt="no image">
+      <h4 class="text-danger">your account is deleting </h4>
+    </div>
+  </div>
+</div>
+-->
+
+
+
+
+<!--delete confirmation child selector-->
+<app-deleteconfirm [serverMsg]="deleteMsg" (onDelete)=" deleteParent($event)" (onCancel)=" cancel()" [item]=" accno">
+</app-deleteconfirm>
+
+
+
+
+
+<!--dashboard design-->
+<div *ngIf="!confirmMsg">
+  <div class=" container" *ngIf="!isLogout" [ngClass]="accno?'hide':'' ">
+    <div class="row">
+      <div class="col-md-4 title">
+        <h1>Welcome {{user}}</h1>
+      </div>
+      <label>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti laudantium provident quam similique,
+        et,
+        amet quidem impedit beatae perferendis, aliquid ducimus nihil. Incidunt quod, tempora in architecto aut
+        vero
+        voluptate!
+      </label>
+      <div class="collapse" id="collapseExample">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam dolor aperiam earum eius, quos excepturi
+        omnis! Minima quas, architecto non vero exercitationem eos ad quo et eius optio consequuntur ratione!
+      </div>
+
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+        aria-expanded="false" aria-controls="collapseExample" (click)="collapse()">
+        <label *ngIf="isCollapse">Read More</label>
+        <label *ngIf="!isCollapse">Read Less</label>
+      </button>
+
+      <img style="width:10cm; height: 10cm;margin-left: 36%;" class="img-fluid mt-5"
+        src="https://rukminim1.flixcart.com/image/416/416/kyq62kw0/sticker/x/r/y/medium-welcome-hands-image-24-45-956-walldecors-original-imafwe3zzbbj38nd.jpeg?q=70"
+        alt="" srcset="">
+    </div>
+  </div>
+</div>
+
+
+
+
+<!--balance enquiry-->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Account Statement</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+      <div class="text-center">
+        <img src="https://c8.alamy.com/zooms/9/980293cd791f4dff858273a10073fb52/2cr499y.jpg" alt="no image"
+          id="balance" />
+      </div>
+      <br>
+      <p>
+        Hi {{user}},
+        <br>
+        <span>
+          {{balance}}
+        </span>
+      </p>
+    </div>
+  </div>
+</div>

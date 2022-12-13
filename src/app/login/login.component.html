@@ -34,8 +34,7 @@
                   &nbsp;
 
                   <div class="form-outline mb-4">
-                    <input formControlName="psswd" name="psswd" id="pswd" type="password" placeholder="password"
-                      class="form-control">
+                    <input formControlName="psswd" name="psswd" id="pswd" type="password" class="form-control">
                     <label class="form-label" for=" pswd">Password</label>
                   </div>
 
@@ -46,17 +45,34 @@
                   </div>
 
 
-                  <div class=" pt-1 mb-4">
-                    <button (click)="login()" class=" btn btn-dark btn-lg btn-block" type="button">Login</button>
+                  <div style=" color:red">{{eMsg}}
                   </div>
 
-                  <a class="small text-muted" href="#!">Forgot password?</a>
 
-                  <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="#!"
-                      style="color: #393f81;">Register here</a>
+                  <div style="margin-top: 5%" class=" pt-1 mb-4">
+                    <button (click)=" login()" class=" btn btn-dark btn-lg btn-block" type="button">Login
+                      <!--bootstrap spinner code-->
+                      <button *ngIf="msg" class=" btn btn-primary" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true">
+                        </span>
+                        Loading...
+                      </button>
+                    </button>
+                    &nbsp;&nbsp;
+                  </div>
+
+
+                  <a class="small text-muted" href="#!">Forgot password?</a>
+                  <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account?
+
+                    <a routerLink="register" style="color: #393f81;">Register here
+                    </a>
+
                   </p>
-                  <a href="#!" class="small text-muted">Terms of use.</a>
-                  <a href="#!" class="small text-muted">Privacy policy</a>
+                  <a href="#!" class="small text-muted">Terms of use.
+                  </a>
+                  <a href="#!" class="small text-muted">Privacy policy
+                  </a>
                 </form>
               </div>
             </div>
